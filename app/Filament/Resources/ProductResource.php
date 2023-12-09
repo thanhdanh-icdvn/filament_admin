@@ -28,12 +28,16 @@ class ProductResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Select::make('category_id')
+                    ->label('Categories')
                     ->relationship('category', 'name')
                     ->searchable()
+                    ->preload()
+                    ->multiple()
                     ->native(false),
                 Forms\Components\Select::make('country_id')
                     ->relationship('country', 'name')
                     ->searchable()
+                    ->preload()
                     ->native(false),
                 Forms\Components\TextInput::make('name')
                     ->required()
