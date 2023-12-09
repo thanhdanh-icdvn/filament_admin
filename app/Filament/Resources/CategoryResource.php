@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\CategoryResource\Pages;
+use App\Filament\Resources\CategoryResource\RelationManagers\ProductsRelationManager;
 use App\Models\Category;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -27,26 +28,26 @@ class CategoryResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('parent_id')
-                    ->numeric(),
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('slug')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\Textarea::make('description')
+                Forms\Components\Select::make('parent_id')
+                    ->label('Parent')
+                    ->options(Category::query()->pluck('name', 'id'))
+                    ->preload()
+                    ->searchable(),
+                Forms\Components\MarkdownEditor::make('description')
                     ->columnSpanFull(),
                 Forms\Components\TextInput::make('position')
                     ->required()
                     ->maxLength(255)
                     ->default(0),
                 Forms\Components\Toggle::make('is_enabled')
-                    ->required(),
-                Forms\Components\TextInput::make('seo_title')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('seo_description')
-                    ->maxLength(255),
+                    ->required()->columnSpanFull(),
+
             ]);
     }
 
@@ -54,9 +55,7 @@ class CategoryResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('parent_id')
-                    ->numeric()
-                    ->sortable(),
+                Tables\Columns\TextColumn::make('parent.name'),
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('slug')
@@ -97,7 +96,7 @@ class CategoryResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            ProductsRelationManager::class,
         ];
     }
 

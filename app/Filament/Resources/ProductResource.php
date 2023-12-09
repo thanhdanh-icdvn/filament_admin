@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProductResource\Pages;
+use App\Filament\Resources\ProductResource\RelationManagers\CategoriesRelationManager;
 use App\Models\Product;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -27,6 +28,10 @@ class ProductResource extends Resource
     {
         return $form
             ->schema([
+                Forms\Components\TextInput::make('name')
+                    ->required()
+                    ->maxLength(255)
+                    ->columnSpanFull(),
                 Forms\Components\Select::make('category_id')
                     ->label('Categories')
                     ->relationship('category', 'name')
@@ -39,10 +44,7 @@ class ProductResource extends Resource
                     ->searchable()
                     ->preload()
                     ->native(false),
-                Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\Textarea::make('description')
+                Forms\Components\RichEditor::make('description')
                     ->maxLength(65535)
                     ->columnSpanFull(),
                 Forms\Components\TextInput::make('price')
@@ -94,7 +96,7 @@ class ProductResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            CategoriesRelationManager::class,
         ];
     }
 

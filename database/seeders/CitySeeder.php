@@ -37,8 +37,8 @@ class CitySeeder extends Seeder
                     'latitude' => empty($data[8]) ? null : $data[8],
                     'longitude' => empty($data[9]) ? null : $data[9],
                     'wikiDataId' => empty($data[10]) ? null : $data[10],
-                    'created_at' =>now(),
-                    'updated_at'=>null
+                    'created_at' => now(),
+                    'updated_at' => null,
                 ];
 
                 if (count($rows) == $chunkSize) {
