@@ -27,7 +27,8 @@ class Kernel extends ConsoleKernel
             ->thenWithOutput(function (Stringable $output) {
                 echo 'update:banks: '.$output;
             })
-            ->emailOutputOnFailure(env('MAIL_USERNAME', 'danhthanh418@gmail.com'));
+            ->emailOutputOnFailure(env('MAIL_USERNAME', 'danhthanh418@gmail.com'))
+            ->withoutOverlapping();
     }
 
     /**

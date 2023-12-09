@@ -3,6 +3,8 @@
 namespace App\Console\Commands;
 
 use App\Models\Bank;
+use App\Models\User;
+use App\Notifications\NotifyUpdateBankTable;
 use Illuminate\Console\Command;
 
 class UpdateBanksCommand extends Command
@@ -46,6 +48,13 @@ class UpdateBanksCommand extends Command
                     );
                 }
             }
+
+            $admin_user = User::query()
+                ->where('email', env('MAIL_USERNAME', 'danhthanh418@gmail.com'))
+                ->firstOrFail();
+
+            $admin_user->notify(new NotifyUpdateBankTable);
+
         } catch (\Throwable $th) {
             throw $th;
         }

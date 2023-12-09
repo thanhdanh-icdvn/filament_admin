@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\Auth;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -17,16 +17,19 @@ class RoleSeeder extends Seeder
 
         $roles = [
             [
-                'name' => 'admin',
+                'name' => 'Super Administrator',
             ],
             [
-                'name' => 'user',
+                'name' => 'Administrator',
             ],
             [
-                'name' => 'writter',
+                'name' => 'Writer',
             ],
             [
-                'name' => 'manager',
+                'name' => 'Manager',
+            ],
+            [
+                'name' => 'User',
             ],
         ];
         foreach ($roles as $role) {

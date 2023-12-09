@@ -65,14 +65,18 @@ class BankResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
+                    ->sortable()
                     ->searchable(),
                 Tables\Columns\ImageColumn::make('logo')
+                    ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('code')
+                    ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('bin')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('shortName')
+                    ->sortable()
                     ->searchable(),
                 Tables\Columns\IconColumn::make('transferSupported')
                     ->boolean(),
