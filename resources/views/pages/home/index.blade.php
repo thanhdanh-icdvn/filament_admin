@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-layouts.home-layout>
     @component('components.offer-image')
     @endcomponent
     @component('components.cons-bages')
@@ -11,4 +11,4 @@
     @endcomponent
     @component('components.recomendation')
     @endcomponent
-</x-app-layout>
+</x-layouts.home-layout>

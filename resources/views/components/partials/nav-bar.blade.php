@@ -22,29 +22,29 @@
                 Home
             </a>
             <a class="font-light text-white duration-100 hover:text-yellow-400 hover:underline"
-                href="{{ url('/catalog') }}">
+                href="{{ url('catalog') }}">
                 Catalog
             </a>
             <a class="font-light text-white duration-100 hover:text-yellow-400 hover:underline"
-                href="{{ url('/about-us') }}">
+                href="{{ url('about-us') }}">
                 About Us
             </a>
             <a class="font-light text-white duration-100 hover:text-yellow-400 hover:underline"
-                href="{{ url('/contact-us') }}">
+                href="{{ url('contact-us') }}">
                 Contact Us
             </a>
         </div>
 
         <div class="ml-auto flex gap-4 px-5">
             <a class="font-light text-white duration-100 hover:text-yellow-400 hover:underline"
-                href="{{ url('/login') }}">
+                href="{{ url('login') }}">
                 Login
             </a>
 
             <span class="text-white">&#124;</span>
 
             <a class="font-light text-white duration-100 hover:text-yellow-400 hover:underline"
-                href="{{ url('/sign-up') }}">Sign Up</a>
+                href="{{ url('sign-up') }}">Sign Up</a>
         </div>
     </div>
 </nav>

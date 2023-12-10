@@ -15,10 +15,35 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('pages.home.index');
-});
-Route::get('/login', function () {
+})->name('home');
+Route::get('login', function () {
     return view('pages.login.index');
-});
-Route::get('/sign-up', function () {
-    return view('pages.home.index');
-});
+})->name('login');
+
+Route::get('sign-up', function () {
+    return view('pages.sign-up.index');
+})->name('sign-up');
+
+Route::get('cart', function () {
+    return view('pages.cart.index');
+})->name('cart');
+
+Route::get('wish-list', function () {
+    return view('pages.wish-list.index');
+})->name('wish-list');
+
+Route::get('account', function () {
+    return view('pages.account.index');
+})->name('account');
+
+Route::get('payment-methods', function () {
+    return view('pages.payment-methods.index');
+})->name('payment-methods');
+
+Route::get('about-us', function () {
+    return view('pages.about-us.index');
+})->name('about-us');
+
+Route::get('contact-us', function () {
+    return view('pages.contact-us.index');
+})->name('contact-us');

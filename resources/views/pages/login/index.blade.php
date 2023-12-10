@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-layouts.content-layout>
     <!-- Login card  -->
     <section class="mx-auto flex-grow w-full mt-10 mb-10 max-w-[1200px] px-5">
         <div class="container mx-auto border px-5 py-5 shadow-sm md:w-1/2">
@@ -42,4 +42,4 @@
         </div>
     </section>
     <!-- /Login Card  -->
-</x-app-layout>
+</x-layouts.content-layout>

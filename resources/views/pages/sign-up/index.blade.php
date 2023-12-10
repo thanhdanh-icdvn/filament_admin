@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-layouts.content-layout>
     <!-- Register card  -->
     <section class="mx-auto mt-10 w-full flex-grow mb-10 max-w-[1200px] px-5">
         <div class="container mx-auto border px-5 py-5 shadow-sm md:w-1/2">
@@ -46,9 +46,9 @@
 
             <p class="text-center">
                 Already have an account?
-                <a href="{{ route('/login') }}" class="text-violet-900">Login now</a>
+                <a href="{{ route('login') }}" class="text-violet-900">Login now</a>
             </p>
         </div>
     </section>
     <!-- /Register Card  -->
-</x-app-layout>
+</x-layouts.content-layout>
