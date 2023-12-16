@@ -7,11 +7,13 @@ import "@splidejs/splide/dist/css/splide.min.css";
 import axios from "axios";
 import Alpine from "alpinejs";
 import Splide from "@splidejs/splide";
+import mask from "@alpinejs/mask";
 
 window.axios = axios;
 // Start AlpineJS
-window.Alpine = Alpine;
+Alpine.plugin(mask);
 Alpine.start();
+window.Alpine = Alpine;
 
 window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 

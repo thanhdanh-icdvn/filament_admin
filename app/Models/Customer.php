@@ -26,6 +26,7 @@ class Customer extends Model
 
     protected $casts = [
         'gender' => GenderEnum::class,
+        'password' => 'hashed',
     ];
 
     public function address(): BelongsTo
@@ -36,5 +37,10 @@ class Customer extends Model
     public function orders(): HasMany
     {
         return $this->hasMany(Order::class);
+    }
+
+    public function payment_methods(): HasMany
+    {
+        return $this->hasMany(PaymentMethod::class);
     }
 }

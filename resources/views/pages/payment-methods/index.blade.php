@@ -5,7 +5,7 @@
         <section class="grid w-full max-w-[1200px] grid-cols-1 gap-3 px-5 pb-10">
             <div class="py-5">
                 <div class="w-full"></div>
-                <form class="flex w-full flex-col gap-3" action="">
+                <form class="flex w-full flex-col gap-3" action="" autocomplete="false">
                     <div class="flex w-full flex-col">
                         <label class="flex" for="name">Payment Card Number</label>
                         <input x-mask="9999 9999 9999 9999" class="w-full border px-4 py-2 lg:w-1/2" type="text"
@@ -14,26 +14,29 @@
 
                     <div class="flex w-full flex-col">
                         <label class="flex" for="name">Card Holder</label>
-                        <input class="w-full border px-4 py-2 lg:w-1/2" type="text" placeholder="SARAH JOHNSON" />
+                        <input class="w-full border px-4 py-2 lg:w-1/2" type="text" placeholder="SARAH JOHNSON"
+                            id="name" name="name" />
                     </div>
 
                     <div class="flex items-center gap-5 lg:w-1/2">
                         <div class="flex flex-col">
-                            <label class="flex" for="name">Expiry Date</label>
+                            <label class="flex" for="card">Expiry Date</label>
 
-                            <div class="flex w-[150px] items-center gap-1">
-                                <input x-mask="99" class="w-1/2 border px-4 py-2 text-center" placeholder="10" />
+                            <div class="flex w-[150px] items-center gap-1" id="card">
+                                <input x-mask="99" class="w-1/2 border px-4 py-2 text-center" placeholder="10"
+                                    id="cardDate" name="cardDate" />
 
-                                <span>&bsol;</span>
+                                <span>/</span>
 
-                                <input x-mask="99" class="w-1/2 border px-4 py-2 text-center" placeholder="36" />
+                                <input x-mask="99" class="w-1/2 border px-4 py-2 text-center" placeholder="36"
+                                    id="cardYear" name="cardYear" />
                             </div>
                         </div>
 
                         <div class="flex flex-col w-[60px] lg:w-[110px]">
-                            <label class="flex" for="">CVV/CVC</label>
+                            <label class="flex" for="cvc">CVV/CVC</label>
                             <input x-mask="999" class="w-full border py-2 text-center lg:w-1/2" type="password"
-                                placeholder="&bull;&bull;&bull;" />
+                                placeholder="&bull;&bull;&bull;" id="cvc" name="cvc" />
                         </div>
                     </div>
 

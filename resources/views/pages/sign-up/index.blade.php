@@ -9,18 +9,21 @@
 
             <form class="mt-6 flex flex-col">
                 <label for="name">Full Name</label>
-                <input class="mb-3 mt-3 border px-4 py-2" type="text" placeholder="Bogdan Bulakh" />
+                <input class="mb-3 mt-3 border px-4 py-2" type="text" placeholder="Full name" name="fullName"
+                    id="full-name" />
 
                 <label class="mt-3" for="email">Email Address</label>
-                <input class="mt-3 border px-4 py-2" type="email" placeholder="user@mail.com" />
+                <input class="mt-3 border px-4 py-2" type="email" placeholder="mail@example.com" name="email"
+                    id="email" />
 
                 <label class="mt-5" for="email">Password</label>
                 <input class="mt-3 border px-4 py-2" type="password"
-                    placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;" />
+                    placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;" name="password" id="password" />
 
                 <label class="mt-5" for="email">Confirm password</label>
                 <input class="mt-3 border px-4 py-2" type="password"
-                    placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;" />
+                    placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;" name="confirmPasswrod"
+                    id="confirmPassword" />
             </form>
 
             <div class="mt-4 flex justify-between">
