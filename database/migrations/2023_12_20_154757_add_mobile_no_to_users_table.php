@@ -11,11 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('regions', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->char('wikiDataId');
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('mobile_no')->nullable()->after('email');
         });
     }
 
@@ -24,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('regions');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('mobile_no');
+        });
     }
 };
