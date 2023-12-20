@@ -4,10 +4,11 @@ namespace App\Enums;
 
 use Filament\Support\Contracts\HasLabel;
 
-enum CollectionTypeEnum: string implements HasLabel
+enum WardDivisionTypeEnum: string implements HasLabel
 {
-    case Auto = 'auto';
-    case Manual = 'manual';
+    case Xa = 'xã';
+    case Phuong = 'phường';
+    case ThiTran = 'thị trấn';
 
     public function getLabel(): ?string
     {
