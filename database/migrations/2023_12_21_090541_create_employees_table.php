@@ -1,9 +1,5 @@
 <?php
 
-use App\Models\Department;
-use App\Models\District;
-use App\Models\Province;
-use App\Models\Ward;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -21,14 +17,15 @@ return new class extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->date('dob');
-            $table->enum('gender', ['name', 'female', 'other']);
+            $table->enum('gender', ['male', 'female', 'other']);
             $table->string('email')->unique();
             $table->string('mobile_number')->unique();
-            $table->foreignIdFor(Province::class)->nullable()->constrained()->nullOnDelete();
-            $table->foreignIdFor(District::class)->nullable()->constrained()->nullOnDelete();
-            $table->foreignIdFor(Ward::class)->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('province_code')->nullable()->constrained('provinces', 'code')->nullOnDelete();
+            $table->foreignId('district_code')->nullable()->constrained('districts', 'code')->nullOnDelete();
+            $table->foreignId('ward_code')->nullable()->constrained('wards', 'code')->nullOnDelete();
             $table->string('street');
-            $table->foreignIdFor(Department::class)->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('department_id')->nullable()->constrained('departments', 'id')->nullOnDelete();
+            $table->boolean('status')->default(true);
             $table->timestamps();
         });
         Schema::enableForeignKeyConstraints();

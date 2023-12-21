@@ -11,7 +11,7 @@ class Employee extends Authenticatable
 {
     use HasFactory;
 
-    protected $fillable = ['first_name', 'last_name', 'dob', 'email', 'mobile_number', 'gender', 'province_id', 'district_id', 'ward_id', 'street', 'department_id'];
+    protected $fillable = ['first_name', 'last_name', 'dob', 'email', 'mobile_number', 'gender', 'province_code', 'district_code', 'ward_code', 'street', 'department_id', 'status'];
 
     protected $casts = [
         'gender' => GenderEnum::class,
