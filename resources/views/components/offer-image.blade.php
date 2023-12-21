@@ -15,7 +15,7 @@
                 ducimus pariatur eaque labore.
             </p>
             <button
-                class="mx-auto mt-5 w-1/2 bg-amber-400 px-3 py-1 text-black duration-100 hover:bg-yellow-300 lg:mx-0 lg:h-10 lg:w-2/12 lg:px-10">
+                class="w-1/2 px-3 py-1 mx-auto mt-5 text-black duration-100 bg-amber-400 hover:bg-yellow-300 lg:mx-0 lg:h-10 lg:w-2/12 lg:px-10">
                 Order Now
             </button>
         </div>
