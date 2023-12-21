@@ -18,6 +18,7 @@ use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Table;
 use Illuminate\Support\Collection;
 
@@ -114,9 +115,13 @@ class EmployeeResource extends Resource
                 TextColumn::make('province_code')
                     ->sortable()
                     ->searchable(),
-                TextColumn::make('department_id')
+                ToggleColumn::make('status')
                     ->sortable()
                     ->searchable(),
+                TextColumn::make('department_id')
+                    ->sortable()
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
