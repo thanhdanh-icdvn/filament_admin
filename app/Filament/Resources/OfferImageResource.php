@@ -2,17 +2,17 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\DepartmentResource\Pages;
-use App\Models\Department;
+use App\Filament\Resources\OfferImageResource\Pages;
+use App\Models\OfferImage;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 
-class DepartmentResource extends Resource
+class OfferImageResource extends Resource
 {
-    protected static ?string $model = Department::class;
+    protected static ?string $model = OfferImage::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -28,9 +28,18 @@ class DepartmentResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('employee_id')
-                    ->nullable()
-                    ->numeric(),
+                Forms\Components\TextInput::make('link')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\Textarea::make('description')
+                    ->required()
+                    ->columnSpanFull(),
+                Forms\Components\FileUpload::make('image')
+                    ->image()
+                    ->required(),
+                Forms\Components\Toggle::make('status')
+                    ->default(true)
+                    ->required(),
             ]);
     }
 
@@ -39,11 +48,12 @@ class DepartmentResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
-                    ->searchable()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('employee_id')
-                    ->label('Manager')
-                    ->sortable(),
+                    ->searchable(),
+                Tables\Columns\ImageColumn::make('image'),
+                Tables\Columns\TextColumn::make('link')
+                    ->searchable(),
+                Tables\Columns\IconColumn::make('status')
+                    ->boolean(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -76,9 +86,9 @@ class DepartmentResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListDepartments::route('/'),
-            'create' => Pages\CreateDepartment::route('/create'),
-            'edit' => Pages\EditDepartment::route('/{record}/edit'),
+            'index' => Pages\ListOfferImages::route('/'),
+            'create' => Pages\CreateOfferImage::route('/create'),
+            'edit' => Pages\EditOfferImage::route('/{record}/edit'),
         ];
     }
 }

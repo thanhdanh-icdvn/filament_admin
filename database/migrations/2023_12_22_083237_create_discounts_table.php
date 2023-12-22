@@ -12,13 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::disableForeignKeyConstraints();
-        Schema::create('offer_images', function (Blueprint $table) {
+        Schema::create('discounts', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->longText('description');
-            $table->string('image');
-            $table->string('link');
-            $table->boolean('status')->default(true);
+            $table->decimal('discount_percent');
+            $table->boolean('active')->default(false);
+            $table->softDeletes();
             $table->timestamps();
         });
         Schema::enableForeignKeyConstraints();
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('offer_images');
+        Schema::dropIfExists('discounts');
     }
 };

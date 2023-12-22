@@ -12,21 +12,19 @@ return new class extends Migration
     public function up(): void
     {
         Schema::disableForeignKeyConstraints();
-        Schema::create('employees', function (Blueprint $table) {
+        Schema::create('customers', function (Blueprint $table) {
             $table->id();
             $table->string('first_name');
             $table->string('last_name');
-            $table->date('dob');
-            $table->enum('gender', ['male', 'female', 'other']);
-            $table->string('email')->unique();
-            $table->string('mobile_number')->unique();
+            $table->char('username');
+            $table->string('password');
+            $table->char('email')->nullable();
+            $table->string('mobile_number')->nullable();
+            $table->decimal('postal_code')->nullable();
+            $table->string('street')->nullable();
             $table->foreignId('province_code')->nullable()->constrained('provinces', 'code')->nullOnDelete();
             $table->foreignId('district_code')->nullable()->constrained('districts', 'code')->nullOnDelete();
             $table->foreignId('ward_code')->nullable()->constrained('wards', 'code')->nullOnDelete();
-            $table->string('street')->nullable();
-            $table->foreignId('department_id')->nullable()->constrained('departments', 'id')->nullOnDelete();
-            $table->foreignId('employee_id')->nullable()->constrained('employees', 'id')->nullOnDelete();
-            $table->boolean('status')->default(true);
             $table->timestamps();
         });
         Schema::enableForeignKeyConstraints();
@@ -37,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('employees');
+        Schema::dropIfExists('customers');
     }
 };

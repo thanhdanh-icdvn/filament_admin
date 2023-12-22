@@ -12,13 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::disableForeignKeyConstraints();
-        Schema::create('offer_images', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->longText('description');
-            $table->string('image');
-            $table->string('link');
-            $table->boolean('status')->default(true);
+            $table->char('SKU');
+            $table->foreignId('category_id')->nullable()->constrained('product_categories', 'id')->nullOnDelete();
+            $table->foreignId('inventory_id')->nullable()->constrained('product_inventories', 'id')->nullOnDelete();
+            $table->decimal('price')->default(0);
+            $table->foreignId('discount_id')->nullable()->constrained('discounts', 'id')->nullOnDelete();
+            $table->softDeletes();
             $table->timestamps();
         });
         Schema::enableForeignKeyConstraints();
@@ -29,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('offer_images');
+        Schema::dropIfExists('products');
     }
 };

@@ -4,6 +4,7 @@
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 import "@splidejs/splide/dist/css/splide.min.css";
+
 import axios from "axios";
 import Alpine from "alpinejs";
 import Splide from "@splidejs/splide";
@@ -46,7 +47,11 @@ if (document.querySelector(".splide")) {
         focus: 0,
         gap: "1rem",
         perPage: 4,
+        autoplay: true,
         breakpoints: {
+            996: {
+                perPage: 3,
+            },
             640: {
                 perPage: 2,
             },

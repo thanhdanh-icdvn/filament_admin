@@ -9,6 +9,7 @@ use App\Models\Employee;
 use App\Models\Province;
 use App\Models\Ward;
 use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
@@ -37,54 +38,74 @@ class EmployeeResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('first_name')
-                    ->required()
-                    ->maxLength(255),
-                TextInput::make('last_name')
-                    ->required()
-                    ->maxLength(255),
-                Select::make('gender')
-                    ->options(GenderEnum::class)
-                    ->required(),
-                DatePicker::make('dob')
-                    ->required(),
-                TextInput::make('email')
-                    ->email()
-                    ->required(),
-                TextInput::make('mobile_number')
-                    ->required(),
-                Select::make('province_code')
-                    ->options(fn (): Collection => Province::query()
-                        ->pluck('name', 'code')
-                    )
-                    ->preload()
-                    ->live()
-                    ->afterStateUpdated(function (Set $set) {
-                        $set('district_code', null);
-                        $set('ward_code', null);
-                    })
-                    ->searchable(),
-                Select::make('district_code')
-                    ->options(fn (Get $get): Collection => District::query()
-                        ->where('province_code', $get('province_code'))
-                        ->pluck('name', 'code')
-                    )
-                    ->preload()
-                    ->live()
-                    ->afterStateUpdated(fn (Set $set) => $set('ward_code', null))
-                    ->searchable(),
-                Select::make('ward_code')
-                    ->options(fn (Get $get): Collection => Ward::query()
-                        ->where('district_code', $get('district_code'))
-                        ->pluck('name', 'code')
-                    )
-                    ->preload()
-                    ->searchable(),
-                TextInput::make('street')
-                    ->nullable()
-                    ->maxLength(255),
-                Select::make('department_id')
-                    ->relationship(name: 'department', titleAttribute: 'name'),
+                Section::make()->description('Require Information')->schema([
+                    TextInput::make('first_name')
+                        ->required()
+                        ->maxLength(255)
+                        ->columnSpan(6),
+                    TextInput::make('last_name')
+                        ->required()
+                        ->maxLength(255)
+                        ->columnSpan(6),
+                    Select::make('gender')
+                        ->options(GenderEnum::class)
+                        ->required()
+                        ->columnSpan(6),
+                    DatePicker::make('dob')
+                        ->required()
+                        ->columnSpan(6),
+                    TextInput::make('email')
+                        ->email()
+                        ->required()->columnSpan(6),
+                    TextInput::make('mobile_number')
+                        ->required()->columnSpan(6),
+                ])->columns(12),
+                Section::make()
+                    ->description('Address Information')
+                    ->collapsible()
+                    ->collapsed()
+                    ->schema([
+                        Select::make('province_code')
+                            ->options(fn (): Collection => Province::query()
+                                ->pluck('name', 'code')
+                            )
+                            ->preload()
+                            ->live()
+                            ->afterStateUpdated(function (Set $set) {
+                                $set('district_code', null);
+                                $set('ward_code', null);
+                            })
+                            ->searchable()->columnSpan(6),
+                        Select::make('district_code')
+                            ->options(fn (Get $get): Collection => District::query()
+                                ->where('province_code', $get('province_code'))
+                                ->pluck('name', 'code')
+                            )
+                            ->preload()
+                            ->live()
+                            ->afterStateUpdated(fn (Set $set) => $set('ward_code', null))
+                            ->searchable()->columnSpan(6),
+                        Select::make('ward_code')
+                            ->options(fn (Get $get): Collection => Ward::query()
+                                ->where('district_code', $get('district_code'))
+                                ->pluck('name', 'code')
+                            )
+                            ->preload()
+                            ->searchable()->columnSpan(6),
+                        TextInput::make('street')
+                            ->nullable()
+                            ->maxLength(255)->columnSpan(6),
+                    ])->columns(12),
+                Section::make()
+                    ->description('Department and Manager')
+                    ->schema([
+                        Select::make('department_id')
+                            ->relationship(name: 'department', titleAttribute: 'name')
+                            ->columnSpan(6),
+                        Select::make('employee_id')
+                            ->relationship(name: 'manager', titleAttribute: 'id')
+                            ->columnSpan(6),
+                    ])->columns(12),
                 Toggle::make('status')->default(true),
             ]);
     }
@@ -93,9 +114,11 @@ class EmployeeResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('first_name')
+                TextColumn::make('full_name')
+                    ->sortable()
                     ->searchable(),
-                TextColumn::make('last_name')
+                TextColumn::make('manager.full_name')
+                    ->sortable()
                     ->searchable(),
                 TextColumn::make('dob')
                     ->date('d/m/Y')

@@ -12,13 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::disableForeignKeyConstraints();
-        Schema::create('offer_images', function (Blueprint $table) {
+        Schema::create('shopping_sessions', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->longText('description');
-            $table->string('image');
-            $table->string('link');
-            $table->boolean('status')->default(true);
+            $table->foreignId('user_id')->nullable()->constrained('users', 'id')->nullOnDelete();
+            $table->decimal('total')->default(0);
             $table->timestamps();
         });
         Schema::enableForeignKeyConstraints();
@@ -29,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('offer_images');
+        Schema::dropIfExists('shopping_sessions');
     }
 };
