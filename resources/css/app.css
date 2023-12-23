@@ -1,5 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import "vendor/awcodes/filament-curator/resources/css/plugin.css";
 
+@layer utilities {
+  .text-primary-500 {
+    color: #3490dc; /* Replace with the desired color code */
+  }
+}

@@ -4,7 +4,7 @@ module.exports = {
         "./resources/**/*.blade.php",
         "./resources/**/*.js",
         "./resources/**/*.vue",
-        // "./vendor/awcodes/filament-curator/resources/**/*.blade.php",
+        "./vendor/awcodes/filament-curator/resources/**/*.blade.php",
     ],
     theme: {
         extend: {},

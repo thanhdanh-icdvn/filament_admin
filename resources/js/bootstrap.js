@@ -5,6 +5,8 @@
  */
 import "@splidejs/splide/dist/css/splide.min.css";
 import "cropperjs/dist/cropper.css";
+import "/vendor/awcodes/filament-curator/resources/css/plugin.css";
+
 
 import axios from "axios";
 import Alpine from "alpinejs";
