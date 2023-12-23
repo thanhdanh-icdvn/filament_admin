@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Schema::disableForeignKeyConstraints();
         Schema::create('banks', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -22,6 +23,7 @@ return new class extends Migration
             $table->boolean('lookupSupported');
             $table->timestamps();
         });
+        Schema::enableForeignKeyConstraints();
     }
 
     /**
@@ -29,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('vietnamese_banks');
+        Schema::dropIfExists('banks');
     }
 };

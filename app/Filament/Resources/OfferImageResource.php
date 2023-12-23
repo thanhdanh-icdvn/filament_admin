@@ -38,7 +38,8 @@ class OfferImageResource extends Resource
                     ->image()
                     ->directory('images')
                     ->imageEditor()
-                    ->previewable()
+                    ->enableOpen()
+                    ->enableDownload()
                     ->required(),
                 Forms\Components\Toggle::make('status')
                     ->default(true)

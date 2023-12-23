@@ -13,6 +13,7 @@
         "awcodes/filament-curator": "^3.3",
         "blade-ui-kit/blade-icons": "^1.5",
         "coduo/php-humanizer": "^4.0",
+        "doctrine/dbal": "^3.7",
         "filament/filament": "3.1",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.10",

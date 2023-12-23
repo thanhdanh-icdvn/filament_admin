@@ -15,7 +15,6 @@ return new class extends Migration
         Schema::create('departments', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('employee_id')->nullable()->constrained()->nullOnDelete();
             $table->timestamps();
         });
         Schema::enableForeignKeyConstraints();
