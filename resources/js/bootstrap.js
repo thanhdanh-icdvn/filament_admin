@@ -14,6 +14,7 @@ import Splide from "@splidejs/splide";
 import mask from "@alpinejs/mask";
 
 window.axios = axios;
+
 // Start AlpineJS
 Alpine.plugin(mask);
 Alpine.start();
