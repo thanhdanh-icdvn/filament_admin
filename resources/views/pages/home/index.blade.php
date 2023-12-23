@@ -1,5 +1,7 @@
 <x-layouts.home-layout>
-    <x-offer-image :offerImage="$offerImage"/>
+    @if ($offerImage)
+        <x-offer-image :offerImage="$offerImage" />
+    @endif
     <x-cons-bages />
     <x-categories />
     <x-slider />

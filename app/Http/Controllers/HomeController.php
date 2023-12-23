@@ -8,7 +8,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $offerImage = OfferImage::query()->where('status', true)->firstOrFail();
+        $offerImage = OfferImage::query()->where('status', true)->first();
 
         return view('pages.home.index', compact('offerImage'));
     }
