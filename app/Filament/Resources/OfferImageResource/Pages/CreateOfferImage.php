@@ -3,7 +3,6 @@
 namespace App\Filament\Resources\OfferImageResource\Pages;
 
 use App\Filament\Resources\OfferImageResource;
-use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
 
 class CreateOfferImage extends CreateRecord
