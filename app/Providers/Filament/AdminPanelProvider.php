@@ -27,6 +27,13 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->plugins([
                 FilamentBackgroundsPlugin::make()->remember(900),
+                \Awcodes\Curator\CuratorPlugin::make()
+                    ->label('Media')
+                    ->pluralLabel('Media')
+                    ->navigationIcon('heroicon-o-photo')
+                    ->navigationGroup('Content')
+                    ->navigationSort(3)
+                    ->navigationCountBadge(),
             ])
             ->id('admin')
             ->path('admin')

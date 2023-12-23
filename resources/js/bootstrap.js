@@ -4,6 +4,7 @@
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 import "@splidejs/splide/dist/css/splide.min.css";
+import "cropperjs/dist/cropper.css";
 
 import axios from "axios";
 import Alpine from "alpinejs";

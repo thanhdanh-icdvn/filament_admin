@@ -36,6 +36,9 @@ class OfferImageResource extends Resource
                     ->columnSpanFull(),
                 Forms\Components\FileUpload::make('image')
                     ->image()
+                    ->directory('images')
+                    ->imageEditor()
+                    ->previewable()
                     ->required(),
                 Forms\Components\Toggle::make('status')
                     ->default(true)

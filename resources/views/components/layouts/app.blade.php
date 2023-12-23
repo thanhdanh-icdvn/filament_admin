@@ -21,7 +21,7 @@
 
     <body class="antialiased">
         {{ $slot }}
-
+        <x-curator::modals.modal />
         @livewire('notifications')
         @livewire('database-notifications')
         @filamentScripts
