@@ -24,7 +24,7 @@ class WardSeeder extends Seeder
                 collect($provinces)->chunk($chunkSize)->each(function ($chunkedProvinces) {
                     // Process each chunk of provinces
                     foreach ($chunkedProvinces as $province) {
-                        Ward::create([
+                        Ward::query()->createOrFirst([
                             'name' => $province['name'],
                             'code' => $province['code'],
                             'division_type' => $province['division_type'],

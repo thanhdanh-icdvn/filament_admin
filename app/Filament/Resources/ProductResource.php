@@ -29,13 +29,11 @@ class ProductResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('category_id')
-                    ->numeric(),
-                Forms\Components\TextInput::make('inventory_id')
-                    ->numeric(),
-                Forms\Components\TextInput::make('discount_id')
-                    ->numeric(),
                 Forms\Components\TextInput::make('name')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\FileUpload::make('thumbnail'),
+                Forms\Components\FileUpload::make('images')->multiples()
                     ->required()
                     ->maxLength(255),
                 Forms\Components\Textarea::make('description')
@@ -44,6 +42,12 @@ class ProductResource extends Resource
                 Forms\Components\TextInput::make('SKU')
                     ->required()
                     ->maxLength(255),
+                Forms\Components\TextInput::make('category_id')
+                    ->numeric(),
+                Forms\Components\TextInput::make('inventory_id')
+                    ->numeric(),
+                Forms\Components\TextInput::make('discount_id')
+                    ->numeric(),
                 Forms\Components\TextInput::make('price')
                     ->required()
                     ->numeric()
@@ -56,6 +60,19 @@ class ProductResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('name')
+                    ->searchable(),
+                Tables\Columns\ImageColumn::make('thumbnail')
+                    ->searchable(),
+                Tables\Columns\ImageColumn::make('images')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('description')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('SKU')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('price')
+                    ->money()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('category_id')
                     ->numeric()
                     ->sortable(),
@@ -64,13 +81,6 @@ class ProductResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('discount_id')
                     ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('SKU')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('price')
-                    ->money()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('deleted_at')
                     ->dateTime()

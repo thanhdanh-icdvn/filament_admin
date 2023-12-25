@@ -8,12 +8,15 @@ use Illuminate\View\Component;
 
 class ConsBages extends Component
 {
+    public $services;
+
     /**
      * Create a new component instance.
      */
     public function __construct()
     {
-        //
+        $services = \App\Models\Service::query()->orderBy('order', 'asc')->get();
+        $this->services = $services;
     }
 
     /**

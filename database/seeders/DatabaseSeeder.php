@@ -18,6 +18,9 @@ class DatabaseSeeder extends Seeder
             ProvinceSeeder::class,
             DistrictSeeder::class,
             WardSeeder::class,
+            ServiceSeeder::class,
+            OfferImageSeeder::class,
+            ProductCategorySeeder::class,
         ]);
     }
 }

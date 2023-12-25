@@ -15,8 +15,8 @@ return new class extends Migration
         Schema::create('offer_images', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->longText('description');
-            $table->string('image');
+            $table->longText('description')->nullable();
+            $table->string('image')->nullable();
             $table->string('link');
             $table->boolean('status')->default(true);
             $table->timestamps();

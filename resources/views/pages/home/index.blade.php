@@ -3,6 +3,7 @@
         <x-offer-image :offerImage="$offerImage" />
     @endif
     <x-cons-bages />
+    {{-- @widget('services') --}}
     <x-categories />
     <x-slider />
     <x-special-offer-card />

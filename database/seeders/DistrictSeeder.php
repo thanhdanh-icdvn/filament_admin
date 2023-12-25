@@ -19,7 +19,7 @@ class DistrictSeeder extends Seeder
                 $jsonData = $response->json();
                 $districts = $jsonData;
                 foreach ($districts as $district) {
-                    District::create([
+                    District::query()->createOrFirst([
                         'name' => $district['name'],
                         'code' => $district['code'],
                         'division_type' => $district['division_type'],

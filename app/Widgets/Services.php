@@ -19,10 +19,11 @@ class Services extends AbstractWidget
      */
     public function run()
     {
-        //
+        $services = \App\Models\Service::query()->orderBy('order', 'asc')->get();
 
         return view('widgets.services', [
             'config' => $this->config,
+            'services' => $services,
         ]);
     }
 }

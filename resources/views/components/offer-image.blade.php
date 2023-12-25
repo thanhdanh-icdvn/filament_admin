@@ -3,7 +3,7 @@
     <div class="relative">
         <img class="w-full object-cover brightness-50 filter lg:h-[500px]"
             {{-- src="{{ url('storage/images/header-bg.jpeg') }}"  --}}
-            src="{{ url('storage/'.$offerImage->image.'') }}"
+            src="{{ url('storage/'.$offerImage->image) }}"
             alt="Living room image" />
 
         <div

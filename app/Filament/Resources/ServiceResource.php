@@ -2,53 +2,36 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ProductCategoryResource\Pages;
-use App\Models\ProductCategory;
+use App\Filament\Resources\ServiceResource\Pages;
+use App\Models\Service;
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 
-class ProductCategoryResource extends Resource
+class ServiceResource extends Resource
 {
-    protected static ?string $model = ProductCategory::class;
+    protected static ?string $model = Service::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-
-    protected static ?string $navigationGroup = 'Products Management';
-
-    protected static ?int $navigationSort = 2;
-
-    public static function getNavigationBadge(): ?string
-    {
-        return static::getModel()::count();
-    }
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
-                    ->live(onBlur: true, debounce: 300)
-                    ->afterStateHydrated(function (Set $set, string $state) {
-                        $set('slug', \Str::slug($state));
-                    })
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('slug')
-                    ->unique()
-                    ->maxLength(255),
-                Forms\Components\FileUpload::make('thumbnail')
-                    ->nullable()
-                    ->directory('images/product-category')
-                    ->imageEditor()
-                    ->enableOpen()
-                    ->enableDownload(),
+                Forms\Components\TextInput::make('order')
+                    ->numeric()
+                    ->nullable(),
                 Forms\Components\Textarea::make('description')
-                    ->nullable()
+                    ->required()
                     ->columnSpanFull(),
+                Forms\Components\TextInput::make('icon')
+                    ->required()
+                    ->maxLength(255),
             ]);
     }
 
@@ -57,17 +40,20 @@ class ProductCategoryResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
+                    ->sortable()
                     ->searchable(),
-                Tables\Columns\TextColumn::make('slug')
-                    ->searchable(),
-                Tables\Columns\ImageColumn::make('thumbnail')
+                Tables\Columns\TextColumn::make('order')
+                    ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('description')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('deleted_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\IconColumn::make('icon')
+                    ->icon(fn (string $state): string => match ($state) {
+                        'delivery' => 'delivery',
+                        'money' => 'money',
+                        'question' => 'question',
+                    })
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -100,9 +86,9 @@ class ProductCategoryResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListProductCategories::route('/'),
-            'create' => Pages\CreateProductCategory::route('/create'),
-            'edit' => Pages\EditProductCategory::route('/{record}/edit'),
+            'index' => Pages\ListServices::route('/'),
+            'create' => Pages\CreateService::route('/create'),
+            'edit' => Pages\EditService::route('/{record}/edit'),
         ];
     }
 }
