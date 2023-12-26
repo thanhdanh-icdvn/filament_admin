@@ -5,6 +5,7 @@
     <x-cons-bages />
     {{-- @widget('services') --}}
     <x-categories :productCategories="$productCategories" />
+    {{-- @asyncWidget('product_categories', ['count' => 6]) --}}
     <x-slider />
     <x-special-offer-card />
     <x-recomendation />
