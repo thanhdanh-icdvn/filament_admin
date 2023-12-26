@@ -11,9 +11,11 @@ class Categories extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public $productCategories;
+
+    public function __construct($productCategories)
     {
-        //
+        $this->productCategories = $productCategories;
     }
 
     /**

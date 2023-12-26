@@ -3,13 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\OfferImage;
+use App\Models\ProductCategory;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        $offerImage = OfferImage::query()->where('status', true)->first();
+        $PRODUCT_CATEGORY_RECORDS = 6;
 
-        return view('pages.home.index', compact('offerImage'));
+        $offerImage = OfferImage::query()->where('status', true)->first();
+        $productCategories = ProductCategory::query()->take($PRODUCT_CATEGORY_RECORDS)->get();
+
+        return view('pages.home.index', compact('offerImage', 'productCategories'));
     }
 }

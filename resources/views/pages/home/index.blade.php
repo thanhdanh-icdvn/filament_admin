@@ -4,7 +4,7 @@
     @endif
     <x-cons-bages />
     {{-- @widget('services') --}}
-    <x-categories />
+    <x-categories :productCategories="$productCategories" />
     <x-slider />
     <x-special-offer-card />
     <x-recomendation />

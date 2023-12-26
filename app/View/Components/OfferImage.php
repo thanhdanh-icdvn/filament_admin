@@ -8,12 +8,12 @@ use Illuminate\View\Component;
 
 class OfferImage extends Component
 {
-    public \App\Models\OfferImage $offerImage;
+    public $offerImage;
 
     /**
      * Create a new component instance.
      */
-    public function __construct(\App\Models\OfferImage $offerImage)
+    public function __construct($offerImage)
     {
         $this->offerImage = $offerImage;
     }
