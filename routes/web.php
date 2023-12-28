@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegistrationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,13 +17,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('login', function () {
-    return view('pages.login.index');
-})->name('login');
+Route::post('/', [HomeController::class, 'logout'])->name('home.logout');
+Route::get('login', [LoginController::class, 'show'])->name('login.show');
+Route::post('login', [LoginController::class, 'login'])->name('login.login');
 
-Route::get('sign-up', function () {
-    return view('pages.sign-up.index');
-})->name('sign-up');
+Route::get('sign-up', [RegistrationController::class, 'create'])->name('sign-up.create');
+Route::post('sign-up', [RegistrationController::class, 'store'])->name('sign-up.store');
 
 Route::get('cart', function () {
     return view('pages.cart.index');

@@ -14,21 +14,15 @@
 </head>
 
 <body class="antialiased" x-data="{ desktopMenuOpen: false, mobileMenuOpen: false }">
-    <main class="h-screen flex flex-col justify-between">
+    <main class="flex flex-col justify-between h-screen">
         <div>
-            @component('components.partials.header')
-            @endcomponent
-            @component('components.partials.burger-menu')
-            @endcomponent
-            @component('components.partials.nav-bar')
-            @endcomponent
-            @component('components.partials.menu')
-            @endcomponent
+            <x-partials.header />
+            <x-partials.burger-menu />
+            <x-partials.nav-bar />
+            <x-partials.menu />
             {{ $slot }}
-            @component('components.partials.footer')
-            @endcomponent
-            @component('components.partials.payment-copy-right')
-            @endcomponent
+            <x-partials.footer />
+            <x-partials.payment-copy-right />
         </div>
     </main>
 </body>

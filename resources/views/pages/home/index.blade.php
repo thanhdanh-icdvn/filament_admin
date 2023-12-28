@@ -1,4 +1,5 @@
 <x-layouts.home-layout>
+    
     @if ($offerImage)
         <x-offer-image :offerImage="$offerImage" />
     @endif
