@@ -73,7 +73,7 @@
 
             <p class="text-center">
                 Already have an account?
-                <a href="{{ route('login') }}" class="text-violet-900">Login now</a>
+                <a href="{{ route('login.show') }}" class="text-violet-900">Login now</a>
             </p>
         </div>
     </section>

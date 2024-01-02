@@ -1,24 +1,24 @@
 <!-- sidebar  -->
-<section class="hidden flex-shrink-0 px-4 lg:block">
-    <div class="border-b py-5">
+<section class="flex-shrink-0 hidden px-4 lg:block">
+    <div class="py-5 border-b">
         <div class="flex items-center">
-            <img width="40px" height="40px" class="rounded-full object-cover"
+            <img width="40px" height="40px" class="object-cover rounded-full"
                 src="{{ url('storage/images/avatar-photo.png') }}" alt="Red woman portrait" />
             <div class="ml-5">
                 <p class="font-medium text-gray-500">Hello,</p>
-                <p class="font-bold">Sarah Johnson</p>
+                <p class="font-bold">{{ Auth::guard('customer')->user()->username }}</p>
             </div>
         </div>
     </div>
 
-    <div class="flex border-b py-5">
+    <div class="flex py-5 border-b">
         <div class="w-full">
             <div class="flex w-full">
                 <div class="flex flex-col gap-2">
                     <a href="{{ url('account') }}"
                         class="flex items-center gap-2 font-medium {{ activeMenu('account') ? 'text-violet-900' : 'active:text-violet-900' }}">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="h-5 w-5">
+                            stroke="currentColor" class="w-5 h-5">
                             <path stroke-linecap="round" stroke-linejoin="round"
                                 d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5zm6-10.125a1.875 1.875 0 11-3.75 0 1.875 1.875 0 013.75 0zm1.294 6.336a6.721 6.721 0 01-3.17.789 6.721 6.721 0 01-3.168-.789 3.376 3.376 0 016.338 0z" />
                         </svg>
@@ -37,12 +37,12 @@
         </div>
     </div>
 
-    <div class="flex border-b py-5">
+    <div class="flex py-5 border-b">
         <div class="flex w-full">
             <div class="flex flex-col gap-2">
                 <a href="{{ url('order-hsitory') }}"
                     class="flex items-center gap-2 font-medium {{ activeMenu('order-history') ? 'text-violet-900' : 'active:text-violet-900' }}">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
                         <path
                             d="M3.375 3C2.339 3 1.5 3.84 1.5 4.875v.75c0 1.036.84 1.875 1.875 1.875h17.25c1.035 0 1.875-.84 1.875-1.875v-.75C22.5 3.839 21.66 3 20.625 3H3.375z" />
                         <path fill-rule="evenodd"
@@ -55,13 +55,13 @@
         </div>
     </div>
 
-    <div class="flex border-b py-5">
+    <div class="flex py-5 border-b">
         <div class="flex w-full">
             <div class="flex flex-col gap-2">
                 <a href="{{ url('payment-methods') }}"
                     class="flex items-center gap-2 font-medium {{ activeMenu('payment-methods') ? 'text-violet-900' : 'active:text-violet-900' }}">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="h-5 w-5">
+                        stroke="currentColor" class="w-5 h-5">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z" />
                     </svg>
@@ -71,13 +71,13 @@
         </div>
     </div>
 
-    <div class="flex border-b py-5">
+    <div class="flex py-5 border-b">
         <div class="flex w-full">
             <div class="flex flex-col gap-2">
                 <a href="{{ url('wish-list') }}"
                     class="flex items-center gap-2 font-medium {{ activeMenu('wish-list') ? 'text-violet-900' : 'active:text-violet-900' }}">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="h-5 w-5">
+                        stroke="currentColor" class="w-5 h-5">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
                     </svg>
@@ -92,7 +92,7 @@
             <div class="flex flex-col gap-2">
                 <a href="#" class="flex items-center gap-2 font-medium active:text-violet-900">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="h-5 w-5">
+                        stroke="currentColor" class="w-5 h-5">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
                     </svg>
