@@ -18,8 +18,8 @@ use Filament\Forms\Get;
 use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Table;
 use Illuminate\Support\Collection;
 
@@ -66,8 +66,9 @@ class EmployeeResource extends Resource
                     ->collapsed()
                     ->schema([
                         Select::make('province_code')
-                            ->options(fn (): Collection => Province::query()
-                                ->pluck('name', 'code')
+                            ->options(
+                                fn (): Collection => Province::query()
+                                    ->pluck('name', 'code')
                             )
                             ->preload()
                             ->live()
@@ -77,18 +78,20 @@ class EmployeeResource extends Resource
                             })
                             ->searchable()->columnSpan(6),
                         Select::make('district_code')
-                            ->options(fn (Get $get): Collection => District::query()
-                                ->where('province_code', $get('province_code'))
-                                ->pluck('name', 'code')
+                            ->options(
+                                fn (Get $get): Collection => District::query()
+                                    ->where('province_code', $get('province_code'))
+                                    ->pluck('name', 'code')
                             )
                             ->preload()
                             ->live()
                             ->afterStateUpdated(fn (Set $set) => $set('ward_code', null))
                             ->searchable()->columnSpan(6),
                         Select::make('ward_code')
-                            ->options(fn (Get $get): Collection => Ward::query()
-                                ->where('district_code', $get('district_code'))
-                                ->pluck('name', 'code')
+                            ->options(
+                                fn (Get $get): Collection => Ward::query()
+                                    ->where('district_code', $get('district_code'))
+                                    ->pluck('name', 'code')
                             )
                             ->preload()
                             ->searchable()->columnSpan(6),
@@ -129,19 +132,20 @@ class EmployeeResource extends Resource
                 TextColumn::make('street')
                     ->sortable()
                     ->searchable(),
-                TextColumn::make('ward_code')
+                TextColumn::make('ward.name')
                     ->sortable()
                     ->searchable(),
-                TextColumn::make('district_code')
+                TextColumn::make('district.name')
                     ->sortable()
                     ->searchable(),
-                TextColumn::make('province_code')
+                TextColumn::make('province.name')
                     ->sortable()
                     ->searchable(),
-                ToggleColumn::make('status')
+                IconColumn::make('status')
+                    ->boolean()
                     ->sortable()
                     ->searchable(),
-                TextColumn::make('department_id')
+                TextColumn::make('department.name')
                     ->sortable()
                     ->searchable()
                     ->toggleable(isToggledHiddenByDefault: true),

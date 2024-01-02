@@ -21,27 +21,27 @@ class Employee extends Authenticatable
 
     public function province(): BelongsTo
     {
-        return $this->belongsTo(Province::class, 'province_code');
+        return $this->belongsTo(Province::class, 'province_code', 'code');
     }
 
     public function district(): BelongsTo
     {
-        return $this->belongsTo(District::class, 'district_code');
+        return $this->belongsTo(District::class, 'district_code', 'code');
     }
 
     public function ward(): BelongsTo
     {
-        return $this->belongsTo(Ward::class, 'ward_code');
+        return $this->belongsTo(Ward::class, 'ward_code', 'code');
     }
 
     public function department(): BelongsTo
     {
-        return $this->belongsTo(Department::class, 'department_id');
+        return $this->belongsTo(Department::class, 'department_id', 'id');
     }
 
     public function manager(): BelongsTo
     {
-        return $this->belongsTo(Employee::class, 'employee_id');
+        return $this->belongsTo(Employee::class, 'employee_id', 'id');
     }
 
     public function getFullNameAttribute(): string

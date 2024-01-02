@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Hash;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -18,7 +19,14 @@ class Customer extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'email', 'password', 'username',
+        'first_name',
+        'last_name',
+        'email',
+        'password',
+        'username',
+        'province_code',
+        'district_code',
+        'ward_code',
     ];
 
     /**
@@ -27,7 +35,8 @@ class Customer extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
 
     protected $appends = ['full_name'];
@@ -43,5 +52,20 @@ class Customer extends Authenticatable
     public function getFullNameAttribute(): string
     {
         return preg_replace('/\s+/', ' ', ucfirst($this->first_name).' '.ucfirst($this->last_name));
+    }
+
+    public function province(): BelongsTo
+    {
+        return $this->belongsTo(Province::class, 'province_code', 'code');
+    }
+
+    public function district(): BelongsTo
+    {
+        return $this->belongsTo(District::class, 'district_code', 'code');
+    }
+
+    public function ward(): BelongsTo
+    {
+        return $this->belongsTo(Ward::class, 'ward_code', 'code');
     }
 }

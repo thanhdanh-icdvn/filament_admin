@@ -31,7 +31,7 @@ class BrandSeeder extends Seeder
                 ['name' => 'CB2', 'logo' => null, 'website' => 'https://www.cb2.com'],
                 ['name' => 'Design Within Reach', 'logo' => null, 'website' => 'https://www.dwr.com'],
                 ['name' => 'Restoration Hardware', 'logo' => null, 'website' => 'https://www.rh.com'],
-                ['name' => 'Williams-Sonoma Home', 'logo' => null, 'website' => 'https://www.wshome.com'],
+                ['name' => 'Williams-Sonoma Home', 'logo' => null, 'website' => 'https://www.williams-sonoma.com/'],
                 ['name' => 'Pier 1 Imports', 'logo' => null, 'website' => 'https://www.pier1.com'],
                 ['name' => 'The Container Store', 'logo' => null, 'website' => 'https://www.containerstore.com'],
                 ['name' => 'Lowe\'s', 'logo' => null, 'website' => 'https://www.lowes.com'],

@@ -33,21 +33,28 @@ class ProductResource extends Resource
                     ->required()
                     ->maxLength(255),
                 Forms\Components\FileUpload::make('thumbnail'),
-                Forms\Components\FileUpload::make('images')->multiples()
-                    ->required()
-                    ->maxLength(255),
+                Forms\Components\FileUpload::make('images')
+                    ->multiple()
+                    ->required(),
                 Forms\Components\Textarea::make('description')
                     ->required()
                     ->columnSpanFull(),
                 Forms\Components\TextInput::make('SKU')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('category_id')
-                    ->numeric(),
-                Forms\Components\TextInput::make('inventory_id')
-                    ->numeric(),
-                Forms\Components\TextInput::make('discount_id')
-                    ->numeric(),
+                Forms\Components\Select::make('category_id')
+                    ->nullable()
+                    ->relationship(name: 'category', titleAttribute: 'name')
+                    ->searchable()->preload(),
+                Forms\Components\Select::make('brand_id')
+                    ->nullable()
+                    ->relationship(name: 'brand', titleAttribute: 'name')
+                    ->searchable()->preload(),
+                Forms\Components\Select::make('discount_id')
+                    ->nullable()
+                    ->multiple()
+                    ->relationship(name: 'discounts', titleAttribute: 'name')
+                    ->searchable()->preload(),
                 Forms\Components\TextInput::make('price')
                     ->required()
                     ->numeric()
@@ -73,14 +80,11 @@ class ProductResource extends Resource
                 Tables\Columns\TextColumn::make('price')
                     ->money()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('category_id')
-                    ->numeric()
+                Tables\Columns\TextColumn::make('category.name')
                     ->sortable(),
-                Tables\Columns\TextColumn::make('inventory_id')
-                    ->numeric()
+                Tables\Columns\TextColumn::make('brand.name')
                     ->sortable(),
-                Tables\Columns\TextColumn::make('discount_id')
-                    ->numeric()
+                Tables\Columns\TextColumn::make('discount.value')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('deleted_at')
                     ->dateTime()
