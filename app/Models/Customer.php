@@ -27,6 +27,9 @@ class Customer extends Authenticatable
         'province_code',
         'district_code',
         'ward_code',
+        'mobile_number',
+        'postal_code',
+        'street',
     ];
 
     /**

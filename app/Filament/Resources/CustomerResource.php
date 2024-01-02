@@ -12,6 +12,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Hash;
 use Illuminate\Support\Collection;
 
 class CustomerResource extends Resource
@@ -19,6 +20,11 @@ class CustomerResource extends Resource
     protected static ?string $model = Customer::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
 
     public static function form(Form $form): Form
     {
@@ -40,7 +46,9 @@ class CustomerResource extends Resource
                         Forms\Components\TextInput::make('password')
                             ->password()
                             ->required()
-                            ->maxLength(255),
+                            ->dehydrateStateUsing(fn ($state) => Hash::make($state))
+                            ->dehydrated(fn ($state) => filled($state))
+                            ->required(fn (string $context): bool => $context === 'create'),
                         Forms\Components\TextInput::make('email')
                             ->email()
                             ->required()

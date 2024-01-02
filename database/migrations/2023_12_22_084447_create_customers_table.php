@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::disableForeignKeyConstraints();
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
+            $table->char('username')->unique();
             $table->string('first_name');
             $table->string('last_name');
-            $table->char('username');
             $table->string('password');
-            $table->char('email')->nullable();
-            $table->string('mobile_number')->nullable();
+            $table->char('email');
+            $table->string('mobile_number')->default(null);
             $table->decimal('postal_code')->nullable();
             $table->string('street')->nullable();
             $table->foreignId('province_code')->nullable()->constrained('provinces', 'code')->nullOnDelete();

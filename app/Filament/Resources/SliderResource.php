@@ -17,6 +17,11 @@ class SliderResource extends Resource
 
     protected static ?string $navigationIcon = 'slider';
 
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
+
     public static function form(Form $form): Form
     {
         return $form
