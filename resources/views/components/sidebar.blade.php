@@ -6,7 +6,9 @@
                 src="{{ url('storage/images/avatar-photo.png') }}" alt="Red woman portrait" />
             <div class="ml-5">
                 <p class="font-medium text-gray-500">Hello,</p>
-                <p class="font-bold">{{ Auth::guard('customer')->user()->username }}</p>
+                @auth('customer')
+                    <p class="font-bold">{{ Auth::guard('customer')->user()->username }}</p>
+                @endauth
             </div>
         </div>
     </div>
