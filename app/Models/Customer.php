@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Hash;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -70,5 +71,10 @@ class Customer extends Authenticatable
     public function ward(): BelongsTo
     {
         return $this->belongsTo(Ward::class, 'ward_code', 'code');
+    }
+
+    public function scopeWhereFullName(Builder $query, string $name)
+    {
+        return $query->whereRaw("CONCAT(first_name, ' ', last_name) = ?", [$name]);
     }
 }

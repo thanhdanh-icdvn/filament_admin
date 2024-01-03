@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\GenderEnum;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -47,5 +48,10 @@ class Employee extends Authenticatable
     public function getFullNameAttribute(): string
     {
         return preg_replace('/\s+/', ' ', ucfirst($this->first_name).' '.ucfirst($this->last_name));
+    }
+
+    public function scopeWhereFullName(Builder $query, string $name)
+    {
+        return $query->whereRaw("CONCAT(first_name, ' ', last_name) = ?", [$name]);
     }
 }

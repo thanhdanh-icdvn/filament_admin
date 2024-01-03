@@ -4,7 +4,6 @@ namespace App\Filament\Resources;
 
 use App\Enums\WardDivisionTypeEnum;
 use App\Filament\Resources\WardResource\Pages;
-use App\Models\District;
 use App\Models\Ward;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -12,8 +11,8 @@ use Filament\Forms\Form;
 use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Columns\SelectColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\MultiSelectFilter;
 use Filament\Tables\Table;
 use Str;
 
@@ -60,17 +59,23 @@ class WardResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('id'),
-                TextColumn::make('name'),
-                TextColumn::make('codename'),
-                TextColumn::make('code'),
-                SelectColumn::make('division_type')
-                    ->options(WardDivisionTypeEnum::class)
-                    ->rules(['required']),
-                SelectColumn::make('district_code')
-                    ->options(fn () => District::pluck('name', 'code')),
+                TextColumn::make('name')->searchable()
+                    ->sortable(),
+                TextColumn::make('codename')->searchable()
+                    ->sortable(),
+                TextColumn::make('code')->searchable()
+                    ->sortable(),
+                TextColumn::make('division_type')->searchable()
+                    ->sortable(),
+                TextColumn::make('district.name')->searchable()
+                    ->sortable(),
             ])
             ->filters([
-                //
+                MultiSelectFilter::make('division_type')
+                    ->options(WardDivisionTypeEnum::class)
+                    ->multiple()
+                    ->preload()
+                    ->searchable(),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

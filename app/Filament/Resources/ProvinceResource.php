@@ -12,8 +12,8 @@ use Filament\Forms\Form;
 use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Columns\SelectColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\MultiSelectFilter;
 use Filament\Tables\Table;
 use Str;
 
@@ -83,15 +83,17 @@ class ProvinceResource extends Resource
                 TextColumn::make('code')->searchable()->sortable(),
                 TextColumn::make('name')->searchable()->sortable(),
                 TextColumn::make('codename')->searchable()->sortable(),
-                SelectColumn::make('division_type')
-                    ->options(ProvinceDivisionTypeEnum::class)
-                    ->rules(['required'])
+                TextColumn::make('division_type')
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('phone_code')->searchable()->sortable(),
             ])
             ->filters([
-                //
+                MultiSelectFilter::make('division_type')
+                    ->options(ProvinceDivisionTypeEnum::class)
+                    ->multiple()
+                    ->preload()
+                    ->searchable(),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
