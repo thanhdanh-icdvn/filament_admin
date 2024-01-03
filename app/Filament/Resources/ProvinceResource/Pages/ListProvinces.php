@@ -4,6 +4,7 @@ namespace App\Filament\Resources\ProvinceResource\Pages;
 
 use App\Enums\ProvinceDivisionTypeEnum;
 use App\Filament\Resources\ProvinceResource;
+use App\Models\Province;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 use Filament\Resources\Pages\ListRecords\Tab;
@@ -26,11 +27,13 @@ class ListProvinces extends ListRecords
             ProvinceDivisionTypeEnum::Province->name => Tab::make(ProvinceDivisionTypeEnum::Province->value)
                 ->modifyQueryUsing(function ($query) {
                     return $query->where('division_type', ProvinceDivisionTypeEnum::Province->value);
-                }),
+                })
+                ->badge(Province::query()->where('division_type', ProvinceDivisionTypeEnum::Province->value)->count()),
             ProvinceDivisionTypeEnum::CentralCity->name => Tab::make(ProvinceDivisionTypeEnum::CentralCity->value)
                 ->modifyQueryUsing(function ($query) {
                     return $query->where('division_type', ProvinceDivisionTypeEnum::CentralCity->value);
-                }),
+                })
+                ->badge(Province::query()->where('division_type', ProvinceDivisionTypeEnum::CentralCity->value)->count()),
         ];
     }
 }
