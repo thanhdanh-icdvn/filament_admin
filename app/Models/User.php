@@ -50,7 +50,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
 
     public function canAccessPanel(\Filament\Panel $panel): bool
     {
-        return true;
+        return $this->isAdmin() && $this->hasVerifiedEmail();
     }
 
     public function isSuperAdmin(): bool

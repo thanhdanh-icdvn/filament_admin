@@ -55,8 +55,8 @@ class CustomerResource extends Resource
                             ->regeneratePassword()
                             ->showPasswordText('Show password')
                             ->hidePasswordText('Hide password')
-                            ->dehydrated(fn ($state) => filled($state))
-                            ->required(fn (string $context): bool => $context === 'create'),
+                            ->dehydrated(fn($state) => filled($state))
+                            ->required(fn(string $context): bool => $context === 'create'),
                         Forms\Components\TextInput::make('email')
                             ->email()
                             ->required()
@@ -65,6 +65,9 @@ class CustomerResource extends Resource
                             ->mask('9999-999-999')
                             ->required()
                             ->maxLength(255),
+                        Forms\Components\Toggle::make('active')
+                            ->required()
+                            ->columnSpanFull(),
                         Forms\Components\TextInput::make('postal_code')->mask('999999'),
                     ])->columns(2),
                 Section::make()

@@ -31,6 +31,7 @@ class Customer extends Authenticatable
         'mobile_number',
         'postal_code',
         'street',
+        'active'
     ];
 
     /**
@@ -44,6 +45,9 @@ class Customer extends Authenticatable
     ];
 
     protected $appends = ['full_name'];
+    protected $casts = [
+        'active' => boolean
+    ];
 
     /**
      * Add a mutator to ensure hashed passwords
@@ -55,7 +59,7 @@ class Customer extends Authenticatable
 
     public function getFullNameAttribute(): string
     {
-        return preg_replace('/\s+/', ' ', ucfirst($this->first_name).' '.ucfirst($this->last_name));
+        return preg_replace('/\s+/', ' ', ucfirst($this->first_name) . ' ' . ucfirst($this->last_name));
     }
 
     public function province(): BelongsTo
@@ -76,5 +80,15 @@ class Customer extends Authenticatable
     public function scopeWhereFullName(Builder $query, string $name)
     {
         return $query->whereRaw("CONCAT(first_name, ' ', last_name) = ?", [$name]);
+    }
+
+    public function scopeActive(Builder $builder): Builder
+    {
+        return $builder->where('active', true);
+    }
+
+    public function scopeInactive(Builder $builder): Builder
+    {
+        return $builder->where('active', false);
     }
 }
