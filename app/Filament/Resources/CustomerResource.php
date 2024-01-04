@@ -55,8 +55,8 @@ class CustomerResource extends Resource
                             ->regeneratePassword()
                             ->showPasswordText('Show password')
                             ->hidePasswordText('Hide password')
-                            ->dehydrated(fn($state) => filled($state))
-                            ->required(fn(string $context): bool => $context === 'create'),
+                            ->dehydrated(fn ($state) => filled($state))
+                            ->required(fn (string $context): bool => $context === 'create'),
                         Forms\Components\TextInput::make('email')
                             ->email()
                             ->required()

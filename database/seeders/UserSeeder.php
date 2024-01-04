@@ -35,7 +35,7 @@ class UserSeeder extends Seeder
             DB::commit();
         } catch (\Exception $e) {
             // Handle any exceptions that may occur
-            Log::error('Seeder failed: ' . $e->getMessage());
+            Log::error('Seeder failed: '.$e->getMessage());
             DB::rollBack();
             throw $e;
             // You can add additional handling logic here, such as sending notifications or rolling back transactions

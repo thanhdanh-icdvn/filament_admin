@@ -31,7 +31,7 @@ class Customer extends Authenticatable
         'mobile_number',
         'postal_code',
         'street',
-        'active'
+        'active',
     ];
 
     /**
@@ -45,8 +45,9 @@ class Customer extends Authenticatable
     ];
 
     protected $appends = ['full_name'];
+
     protected $casts = [
-        'active' => boolean
+        'active' => boolean,
     ];
 
     /**
@@ -59,7 +60,7 @@ class Customer extends Authenticatable
 
     public function getFullNameAttribute(): string
     {
-        return preg_replace('/\s+/', ' ', ucfirst($this->first_name) . ' ' . ucfirst($this->last_name));
+        return preg_replace('/\s+/', ' ', ucfirst($this->first_name).' '.ucfirst($this->last_name));
     }
 
     public function province(): BelongsTo
