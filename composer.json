@@ -20,14 +20,13 @@
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
         "livewire/livewire": "^3.2",
-        "propaganistas/laravel-phone": "^5.0",
         "rawilk/filament-password-input": "^1.1",
-        "simplesoftwareio/simple-qrcode": "^4.2",
         "spatie/laravel-permission": "^6.2",
         "swisnl/filament-backgrounds": "^1.1"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.9",
+        "botble/git-commit-checker": "^2.1",
         "fakerphp/faker": "^1.9.1",
         "laravel/pint": "^1.13",
         "laravel/sail": "^1.18",

@@ -14,6 +14,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Hash;
 use Illuminate\Support\Collection;
+use Rawilk\FilamentPasswordInput\Password;
 
 class CustomerResource extends Resource
 {
@@ -43,10 +44,17 @@ class CustomerResource extends Resource
                         Forms\Components\TextInput::make('username')
                             ->required()
                             ->maxLength(255),
-                        Forms\Components\TextInput::make('password')
-                            ->password()
-                            ->required()
-                            ->dehydrateStateUsing(fn ($state) => Hash::make($state))
+                        // Password::make('password')
+                        //     ->password()
+                        //     ->required()
+                        //     ->dehydrateStateUsing(fn($state) => Hash::make($state))
+                        //     ->dehydrated(fn($state) => filled($state))
+                        //     ->required(fn(string $context): bool => $context === 'create'),
+                        Password::make('password')
+                            ->copyable()
+                            ->regeneratePassword()
+                            ->showPasswordText('Show password')
+                            ->hidePasswordText('Hide password')
                             ->dehydrated(fn ($state) => filled($state))
                             ->required(fn (string $context): bool => $context === 'create'),
                         Forms\Components\TextInput::make('email')
@@ -54,10 +62,10 @@ class CustomerResource extends Resource
                             ->required()
                             ->maxLength(255),
                         Forms\Components\TextInput::make('mobile_number')
+                            ->mask('9999-999-999')
                             ->required()
                             ->maxLength(255),
-                        Forms\Components\TextInput::make('postal_code')
-                            ->numeric(),
+                        Forms\Components\TextInput::make('postal_code')->mask('999999'),
                     ])->columns(2),
                 Section::make()
                     ->description('Address info')
