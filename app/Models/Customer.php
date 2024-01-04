@@ -46,10 +46,6 @@ class Customer extends Authenticatable
 
     protected $appends = ['full_name'];
 
-    protected $casts = [
-        'active' => boolean,
-    ];
-
     /**
      * Add a mutator to ensure hashed passwords
      */
