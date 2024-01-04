@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "33030ceed1ba272a1ce7f94f31050a49",
+    "content-hash": "25556b7ad72da596f5782afb1817346c",
     "packages": [
         {
             "name": "aeon-php/calendar",
@@ -8844,6 +8844,65 @@
                 }
             ],
             "time": "2023-08-25T18:43:57+00:00"
+        },
+        {
+            "name": "botble/git-commit-checker",
+            "version": "2.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/botble/git-commit-checker.git",
+                "reference": "0b75b3c1a42fbe3faa6ace927c115f685707b94a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/botble/git-commit-checker/zipball/0b75b3c1a42fbe3faa6ace927c115f685707b94a",
+                "reference": "0b75b3c1a42fbe3faa6ace927c115f685707b94a",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^9.32|^10.0",
+                "laravel/pint": "^1.4.0",
+                "php": "^8.0|^8.1|^8.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.0|^10.0"
+            },
+            "type": "package",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Botble\\GitCommitChecker\\Providers\\GitCommitCheckerServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Botble\\GitCommitChecker\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sang Nguyen",
+                    "email": "sangnguyenplus@gmail.com"
+                }
+            ],
+            "description": "Check coding standard & code syntax with Git pre-commit hook.",
+            "homepage": "https://botble.com",
+            "keywords": [
+                "botble",
+                "botble cms",
+                "botble git commit checker",
+                "botble platform"
+            ],
+            "support": {
+                "issues": "https://github.com/botble/git-commit-checker/issues",
+                "source": "https://github.com/botble/git-commit-checker/tree/2.1.4"
+            },
+            "time": "2023-02-15T03:40:42+00:00"
         },
         {
             "name": "fakerphp/faker",
