@@ -39,7 +39,7 @@ class ProvinceResource extends Resource
                 Section::make()->schema([
                     TextInput::make('code')
                         ->numeric()
-                        ->unique()
+                        ->unique(ignorable: fn ($record) => $record)
                         ->required()
                         ->columnSpan([
                             'md' => 2,
@@ -52,7 +52,7 @@ class ProvinceResource extends Resource
                             'md' => 6,
                         ]),
                     TextInput::make('codename')
-                        ->unique()
+                        ->unique(ignorable: fn ($record) => $record)
                         ->required()
                         ->columnSpan([
                             'md' => 4,

@@ -13,6 +13,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Hash;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use Rawilk\FilamentPasswordInput\Password;
 
@@ -24,7 +25,7 @@ class CustomerResource extends Resource
 
     public static function getNavigationBadge(): ?string
     {
-        return static::getModel()::count() ?? '0';
+        return static::getModel()::count();
     }
 
     public static function form(Form $form): Form
@@ -113,6 +114,11 @@ class CustomerResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('first_name')->searchable(),
                 Tables\Columns\TextColumn::make('last_name')->searchable(),
+                // Tables\Columns\TextColumn::make('full_name')
+                //     ->searchable(query: function (Builder $query, string $search): Builder {
+                //         return $query->whereFullName($search);
+                //     })
+                //     ->sortable(),
                 Tables\Columns\TextColumn::make('username')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')

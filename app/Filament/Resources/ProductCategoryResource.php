@@ -38,7 +38,7 @@ class ProductCategoryResource extends Resource
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('slug')
-                    ->unique()
+                    ->unique(ignorable: fn ($record) => $record)
                     ->maxLength(255),
                 Forms\Components\FileUpload::make('thumbnail')
                     ->nullable()

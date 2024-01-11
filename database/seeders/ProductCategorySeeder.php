@@ -53,7 +53,10 @@ class ProductCategorySeeder extends Seeder
             ];
 
             foreach ($productCategories as $productCategory) {
-                ProductCategory::query()->createOrFirst($productCategory);
+                ProductCategory::query()->createOrFirst([
+                    ...$productCategory,
+                    'slug' => \Str::slug($productCategory['name']),
+                ]);
             }
         } catch (\Throwable $th) {
             throw $th;
