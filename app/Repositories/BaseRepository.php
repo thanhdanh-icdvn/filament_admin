@@ -3,19 +3,20 @@
 namespace App\Repositories;
 
 use App\Repositories\Interfaces\RepositoryInterface;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 abstract class BaseRepository implements RepositoryInterface
 {
-    //model muốn tương tác
+    // model
     protected $model;
 
-    //khởi tạo
+    // contructor
     public function __construct()
     {
         $this->setModel();
     }
 
-    //lấy model tương ứng
+    //get model
     abstract public function getModel();
 
     /**
@@ -33,6 +34,9 @@ abstract class BaseRepository implements RepositoryInterface
         return $this->model->all();
     }
 
+    /**
+     * @return mixed
+     */
     public function find(int $id)
     {
         $result = $this->model->find($id);
@@ -40,11 +44,17 @@ abstract class BaseRepository implements RepositoryInterface
         return $result;
     }
 
+    /**
+     * @return mixed
+     */
     public function create(array $attributes = [])
     {
         return $this->model->create($attributes);
     }
 
+    /**
+     * @return mixed
+     */
     public function update(int $id, array $attributes = [])
     {
         $result = $this->find($id);
@@ -57,7 +67,7 @@ abstract class BaseRepository implements RepositoryInterface
         return false;
     }
 
-    public function delete(int $id)
+    public function delete(int $id): bool
     {
         $result = $this->find($id);
         if ($result) {
@@ -67,5 +77,40 @@ abstract class BaseRepository implements RepositoryInterface
         }
 
         return false;
+    }
+
+    /**
+     * @param  array  $columns
+     * @return mixed
+     */
+    public function all($columns = ['*'], string $orderBy = 'id', string $sortBy = 'asc')
+    {
+        return $this->model->orderBy($orderBy, $sortBy)->get($columns);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function findBy(array $data)
+    {
+        return $this->model->where($data)->all();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function findOneBy(array $data)
+    {
+        return $this->model->where($data)->first();
+    }
+
+    /**
+     * @return mixed
+     *
+     * @throws ModelNotFoundException
+     */
+    public function findOneByOrFail(array $data)
+    {
+        return $this->model->where($data)->firstOrFail();
     }
 }
